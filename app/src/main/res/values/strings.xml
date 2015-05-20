@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">UnitConverter</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="convert_unit">
+        <item>Temprature</item>
+        <item>Weight</item>
+        <item>Area</item>
+        <item>Bits and Bytes</item>
+        <item>Density</item>
+        <item>Electric Current</item>
+        <item>Force</item>
+        <item>Length</item>
+        <item>Pressure</item>
+        <item>Volume</item>
+    </string-array>
+    <string-array name="temp_array">
+        <item>celcius</item>
+        <item>fahrenheit</item>
+        <item>kelvin</item>
+
+    </string-array>
+    <string-array name="blank_array">
+
+    </string-array>
+</resources>
