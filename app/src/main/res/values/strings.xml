@@ -16,7 +16,7 @@
         <item>Volume</item>
     </string-array>
     <string-array name="temp_array">
-        <item>celcius</item>
+        <item>celsius</item>
         <item>fahrenheit</item>
         <item>kelvin</item>
 

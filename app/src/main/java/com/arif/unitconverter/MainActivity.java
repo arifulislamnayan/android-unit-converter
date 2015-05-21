@@ -3,6 +3,7 @@ package com.arif.unitconverter;
 import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.text.DecimalFormat;
 
 
 public class MainActivity extends Activity {
@@ -115,37 +118,119 @@ public void clear(View view)
 
 
 }
-public void convert(View view)
-{
+public void convert(View view) {
     //double input = Double.parseDouble(etFrom.getText().toString());
-    float inputValue = Float.parseFloat(etFrom.getText().toString());
-    if(spUnitFrom.getSelectedItem().equals("fahrenheit") && spUnitTo.getSelectedItem().equals("celcius"))
-    {
 
-        etTo.setText(String.valueOf(convertFahrenheitToCelsius(inputValue)));
 
-    }
-    else
-    {
-        Toast.makeText(getApplicationContext(),"Input correctly",Toast.LENGTH_LONG).show();
-    }
+    DecimalFormat df = new DecimalFormat("##.##");
+    String input = etFrom.getText().toString();
+    if (input != null) {
+        double inputValue;
+        try {
+            inputValue = new Double(etFrom.getText().toString());
+        }
+        catch (NumberFormatException e)
+        {
+            inputValue=0;
+        }
+        //double inputValue = Double.parseDouble(input);
 
-    if(spUnitFrom.getSelectedItem().equals("celcius") && spUnitTo.getSelectedItem().equals("fahrenheit"))
-    {
 
-        etTo.setText(String.valueOf(convertCelsiusToFahrenheit(inputValue)));
+        //String input = Float.toString(inputValue);
+        //float inputValue = Float.parseFloat(etFrom.getText().toString());
+        // Temperature convert conditions starts  here
+        // F > C
+        if (spUnitFrom.getSelectedItem().equals("fahrenheit") && spUnitTo.getSelectedItem().equals("celsius")) {
+            double ftoc = Double.parseDouble(String.valueOf(convertFahrenheitToCelsius(inputValue)));
+            etTo.setText(df.format(ftoc));
 
-    }
+        }
 //    else
 //    {
 //        Toast.makeText(getApplicationContext(),"Input correctly",Toast.LENGTH_LONG).show();
 //    }
+
+        // C > F
+        if (spUnitFrom.getSelectedItem().equals("celsius") && spUnitTo.getSelectedItem().equals("fahrenheit")) {
+            double ctof = Double.parseDouble(String.valueOf(convertCelsiusToFahrenheit(inputValue)));
+            etTo.setText(df.format(ctof));
+
+        }
+        // C > K
+        if (spUnitFrom.getSelectedItem().equals("celsius") && spUnitTo.getSelectedItem().equals("kelvin")) {
+            double ctok = Double.parseDouble(String.valueOf(convertCelsiusToKelvin(inputValue)));
+            etTo.setText(df.format(ctok));
+
+
+        }
+        // K> C
+        if (spUnitFrom.getSelectedItem().equals("kelvin") && spUnitTo.getSelectedItem().equals("celsius")) {
+            double value = Double.parseDouble(String.valueOf(convertKelvinToCelsius(inputValue)));
+            etTo.setText(df.format(value));
+
+        }
+
+
+        // F > K
+        if (spUnitFrom.getSelectedItem().equals("fahrenheit") && spUnitTo.getSelectedItem().equals("kelvin")) {
+            double conv = Double.parseDouble(String.valueOf(convertFarenhietToKelvin(inputValue)));
+            etTo.setText(df.format(conv));
+
+        }
+
+
+        // K > F
+
+        if (spUnitFrom.getSelectedItem().equals("kelvin") && spUnitTo.getSelectedItem().equals("fahrenheit")) {
+            double ktof = Double.parseDouble(String.valueOf(convertKelvinToFarenhiet(inputValue)));
+            etTo.setText(df.format(ktof));
+
+
+        }
+// Temperature spinner selection ends here
+
+// Same input in both Spinner
+
+        if (spUnitFrom.getSelectedItem() == spUnitTo.getSelectedItem()) {
+            etTo.setText(String.valueOf(etFrom.getText().toString()));
+        }
+
+
+    }
+    if (input.matches("")){
+        Toast.makeText(getApplication(),"Input should not be null", Toast.LENGTH_LONG).show();
+    }
 }
-    private float convertFahrenheitToCelsius(float far) {
+
+    // Temperature conversion methods starts here
+    private double convertFahrenheitToCelsius(double far) {
         return ((far - 32) * 5 / 9);
     }
-
-    private float convertCelsiusToFahrenheit(float celsius) {
+    private double convertCelsiusToFahrenheit(double celsius) {
         return ((celsius * 9) / 5) + 32;
+    }
+    private double convertCelsiusToKelvin(double celsius) {
+        return (celsius +273.15);
+    }
+    private double convertKelvinToCelsius(double kelvin) {
+        return (kelvin -273.15);
+    }
+    private double convertFarenhietToKelvin(double fahr) {
+        return ((fahr +459.67)*5 / 9);
+    }
+    private double convertKelvinToFarenhiet(double kelvin) {
+        return (kelvin*(9/5) -459.67);
+    }
+    // Temperature conversion methods ends here
+
+
+
+    public void swap(View view)
+    {
+        int spFromspinnerIndex = spUnitFrom.getSelectedItemPosition();
+        spUnitFrom.setSelection(spUnitTo.getSelectedItemPosition());
+        spUnitTo.setSelection(spFromspinnerIndex);
+
+
     }
 }

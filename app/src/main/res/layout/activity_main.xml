@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/etFrom"
         android:gravity="left"
-        android:inputType="number"
+
         />
 
 
@@ -138,7 +138,7 @@
             android:layout_height="wrap_content"
             android:text="Swap"
             android:layout_marginRight="20dp"
-
+            android:onClick="swap"
             android:id="@+id/buttonSwap"/>
 
         <Button
