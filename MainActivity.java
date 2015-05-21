@@ -204,25 +204,13 @@ public void convert(View view) {
 
 
         if (spUnitFrom.getSelectedItem().equals("gram") && spUnitTo.getSelectedItem().equals("kilogram")) {
-            //double ktof = Double.parseDouble();
-            etTo.setText(String.valueOf(gramToKg(inputValue)));
-
-
-        }
-        if (spUnitFrom.getSelectedItem().equals("kilogram") && spUnitTo.getSelectedItem().equals("gram")) {
-            //double ktof = Double.parseDouble();
-            etTo.setText(String.valueOf(kgToGram(inputValue)));
+            double ktof = Double.parseDouble(String.valueOf(gramToKg(inputValue)));
+            etTo.setText(df.format(ktof));
 
 
         }
         if (spUnitFrom.getSelectedItem().equals("gram") && spUnitTo.getSelectedItem().equals("ounce")) {
             double ktof = Double.parseDouble(String.valueOf(gramToOunce(inputValue)));
-            etTo.setText(df.format(ktof));
-
-
-        }
-        if (spUnitFrom.getSelectedItem().equals("ounce") && spUnitTo.getSelectedItem().equals("gram")) {
-            double ktof = Double.parseDouble(String.valueOf(ounceToGram(inputValue)));
             etTo.setText(df.format(ktof));
 
 
@@ -233,39 +221,6 @@ public void convert(View view) {
 
 
         }
-        if (spUnitFrom.getSelectedItem().equals("pounds") && spUnitTo.getSelectedItem().equals("gram")) {
-            double ktof = Double.parseDouble(String.valueOf(poundToGram(inputValue)));
-            etTo.setText(df.format(ktof));
-
-
-        }
-
-        if (spUnitFrom.getSelectedItem().equals("gram") && spUnitTo.getSelectedItem().equals("ton")) {
-            //double ktof = Double.parseDouble(String.valueOf(gramToTon(inputValue)));
-            etTo.setText(String.valueOf(gramToTon(inputValue)));
-
-        }
-
-
-        if (spUnitFrom.getSelectedItem().equals("ton") && spUnitTo.getSelectedItem().equals("gram")) {
-            //double ktof = Double.parseDouble(String.valueOf(gramToTon(inputValue)));
-            etTo.setText(String.valueOf(tonToGram(inputValue)));
-
-        }
-
-        if (spUnitFrom.getSelectedItem().equals("gram") && spUnitTo.getSelectedItem().equals("centigram")) {
-            //double ktof = Double.parseDouble(String.valueOf(gramToTon(inputValue)));
-            etTo.setText(String.valueOf(gramToCentigram(inputValue)));
-        }
-
-
-        if (spUnitFrom.getSelectedItem().equals("centigram") && spUnitTo.getSelectedItem().equals("gram")) {
-            //double ktof = Double.parseDouble(String.valueOf(gramToTon(inputValue)));
-            etTo.setText(String.valueOf(cgToGram(inputValue)));
-        }
-
-
-
 // Same input in both Spinner
 
         if (spUnitFrom.getSelectedItem() == spUnitTo.getSelectedItem()) {
@@ -298,50 +253,18 @@ public void convert(View view) {
     private double convertKelvinToFarenhiet(double kelvin) {
         return (kelvin*(9/5) -459.67);
     }
-    // Temperature conversion methods ends here
-
-
-
-    //Weight conversion methods
     private double gramToKg(double gram) {
         return (gram / 1000);
-    }
-    private double gramToPound(double gram) {
-        return (gram * 0.0022);
     }
     private double gramToOunce(double gram) {
         return (gram * 0.03528);
     }
-    private double gramToCentigram(double gram) {
-        return (gram * 100);
+
+    private double gramToPound(double gram) {
+        return (gram * 0.0022);
     }
 
-
-    private double kgToGram(double kg) {
-        return (kg * 1000);
-    }
-    private double ounceToGram(double ounce) {
-        return (ounce / 0.03528);
-    }
-
-    private double poundToGram(double pound) {
-        return (pound / 0.0022);
-    }
-    private double cgToGram(double cg) {
-        return (cg / 100);
-    }
-    private double gramToTon(double gram) {
-
-        return (gram * 0.0000001);
-
-    }
-    private double tonToGram(double ton) {
-
-        return (ton / 0.0000001);
-
-    }
-
-
+    // Temperature conversion methods ends here
 
 
 

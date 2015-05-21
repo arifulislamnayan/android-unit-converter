@@ -21,6 +21,15 @@
         <item>kelvin</item>
 
     </string-array>
+    <string-array name="weight_array">
+        <item>gram</item>
+        <item>centigram</item>
+        <item>kilogram</item>
+        <item>pounds</item>
+        <item>ounce</item>
+        <item>ton</item>
+
+    </string-array>
     <string-array name="blank_array">
 
     </string-array>
